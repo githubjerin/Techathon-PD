@@ -37,9 +37,9 @@ app.listen(port, () => {
     console.log(`Server is active on port : ${port}`);
 });
 
-// app.get('/', (req, res) => {
-//     res.send("Test");
-// });
+app.get('/', (req, res) => {
+    res.send("Test");
+});
 
 app.use("/user", userRouter);
 app.use("/logout", logoutRouter);

@@ -12,6 +12,7 @@ import ForgotPassword from './pages/forgotPass.page.jsx';
 import ResetPassword from './pages/resetPass.page.jsx';
 import WelcomePage from "./pages/welcomeUser.page.jsx";
 import AddMemoryPage from "./pages/addmem.page.jsx";
+import Memories from "./pages/memories.page.jsx";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/reset-password" element={ <ResetPassword navigate={useNavigate}/> }/>
           <Route path="/welcomepage" element={ <WelcomePage navigate={useNavigate}/> }/>
           <Route path="/addMemory" element={ <AddMemoryPage navigate={useNavigate}/> }/>
+          <Route path="/addMemory" element={ <AddMemoryPage navigate={useNavigate}/> }/>
+          <Route path="/memories" element={ <Memories navigate={useNavigate}/> }/>
         </Routes>
     </Router>
   );

@@ -28,27 +28,29 @@ export default function addMemory() {
     }
 
     async function submit() {
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('data', description);
-        formData.append('location', location);
-        formData.append('memory_image', image);
+        // const formData = new FormData();
+        // formData.append('title', title);
+        // formData.append('data', description);
+        // formData.append('location', location);
+        // formData.append('memory_image', image);
         
-        axios.post('http://localhost:2003/memory/add-memory', formData, {withCredentials: true})
+        // axios.post('http://172.16.11.230:2003/memory/add-memory', formData, {withCredentials: true})
 
-        // const response = await fetch('http://localhost:2003/memory/add-memory', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         data: description,
-        //         memory_image: image,
-        //         location: location,
-        //         title: title
-        //     }),
-        //     credentials: 'include'
-        // });
+        const response = await fetch('http://localhost:2003/memory/add-memory', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                data: description,
+                memory_image: image,
+                location: location,
+                title: title
+            }),
+            credentials: 'include'
+        });
+        
+        console.log(response);
     }
     
 
@@ -102,7 +104,7 @@ export default function addMemory() {
                             <div class="row">
                                 
                                 <div class="col-md-12">
-                                    <form name="contactForm" id='contact_form' class="row form-s1"  onSubmit={submit}>
+                                    <form name="contactForm" method='post' encType='multipart/form-data' id='contact_form' class="row form-s1"  >
     
                                         <div class="field-set col-md-12">
                                             <input type='text' id='title' class="form-control" placeholder="Memory Title" onChange={handleChange}/>
@@ -123,7 +125,7 @@ export default function addMemory() {
     
                                         <div class="col-md-12">
                                             <div id='submit'>
-                                                <input type='submit' id='submit' value='Upload Memory' class="btn btn-custom color-2"/>
+                                                <input type='button' id='submit' value='Upload Memory' class="btn btn-custom color-2" onClick={submit}/>
                                             </div>
                                         </div>
                                     </form>
