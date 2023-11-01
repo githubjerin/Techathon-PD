@@ -10,15 +10,38 @@ import Memory from "../components/memory.component.jsx";
 
 
 export default function Landing() {
-    
+    const [entries, setEntries] = React.useState([]);
+    async function getEntries() {
+        const response = await fetch('http://localhost:2003/memory/view-memory', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        });
+        if (response.status === 200) {
+            const data = await response.json();
+            setEntries(data);
+        } else {
+            alert('Invalid email or password');
+        }
+    }
+
     async function entriesList() {
-        return this.state.entries.map(currententry => {       
+        
+        return entries.forEach(currententry => {       
             return <Memory 
                         key={currententry._id}
-                        
+                        title={currententry.title}
+                        data={currententry.data} 
+                        location={currententry.location}
                     />;
         });
     }
+
+    React.useEffect(() => {
+        getEntries();
+    }, []);
 
     return (
         <div id="homepage">
@@ -65,12 +88,8 @@ export default function Landing() {
 
                 <section aria-label="section-services">
                     <div class="container">
-                        <Memory></Memory>
-                        <Memory></Memory>
-
-                       
-
-                       
+                        <Memory title="Memory #1" data="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." location="Chennai"></Memory>
+                        <Memory title="Memory #2" data="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." location="Chennai"></Memory>
 
                         <div class="spacer-double"></div>
 

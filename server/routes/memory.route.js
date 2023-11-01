@@ -8,7 +8,7 @@ import { upload } from "../modules/file-handler.module.js";
 const router = express.Router();
 
 /*  SECTION - I     */
-router.post('/view-memory', isLoggedIn, async (req, res) => {
+router.get('/view-memory', isLoggedIn, async (req, res) => {
     try {
         const memory_detail = await memory.find({ email: req.user.email });
         if(memory_detail) {

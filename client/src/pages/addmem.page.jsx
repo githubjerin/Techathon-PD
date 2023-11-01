@@ -28,13 +28,7 @@ export default function addMemory() {
     }
 
     async function submit() {
-        // const formData = new FormData();
-        // formData.append('title', title);
-        // formData.append('data', description);
-        // formData.append('location', location);
-        // formData.append('memory_image', image);
-        
-        // axios.post('http://172.16.11.230:2003/memory/add-memory', formData, {withCredentials: true})
+
 
         const response = await fetch('http://localhost:2003/memory/add-memory', {
             method: 'POST',

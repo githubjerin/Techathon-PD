@@ -12,12 +12,11 @@ export default function Memory(props) {
     <div class="row table">
                             <div class="padding40">
                                 <div class="post-text">
-                                    <h3><a href="news-single.html">Memory #1</a></h3>
-                                    <p style={{color: "white"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat.
+                                    <h3><a href="news-single.html">{props.title}</a></h3>
+                                    <p style={{color: "white"}}>{props.data}
                                     </p>
 
-                                    <span class="post-date">January 1, 2019</span>
+                                    <span class="post-date">{props.location}</span>
 
                                 </div>
                             </div>

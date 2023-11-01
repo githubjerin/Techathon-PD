@@ -22,8 +22,7 @@ export default function WelcomePage() {
             credentials: 'include'
         });
         if (response.status === 200) {
-            const data = await response.json();
-            setUsername(data.name)
+            response.json("Done");
         } 
 
     }

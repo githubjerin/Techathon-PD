@@ -44,7 +44,7 @@ export default function Landing() {
                 credentials: 'include'
             });
             if (response.status === 200) {
-                navigate('/welcomepage');
+                navigate('/memories');
             } else {
                 alert('Invalid email or password');
             }
@@ -67,7 +67,7 @@ export default function Landing() {
                             <div className="text-center bg-primary position-relative">
                                 <div className="position-relative pt-4 py-5 mb-1">
                                     <h5 className="text-white">Welcome!</h5>
-                                <p className="text-white-50 mb-0 fs-14">Sign in to Continue...</p>
+                                <p className="text-white-50 mb-0 fs-14" style={{paddingBottom: "20px"}}>Sign in to Continue...</p>
                                 </div>
                             </div>
                             <div className="card-body position-relative">
