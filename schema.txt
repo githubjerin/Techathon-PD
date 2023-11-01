@@ -1,0 +1,45 @@
+DATABASE SCHEMA
+DATABASE SCHEMA: USER SCHEMA
+This database schema defines the structure of documents to be stored in a collection named "user" within a MongoDB database. It is designed for use with the Mongoose library, which provides an interface for MongoDB interactions.
+FIELDS IN THE SCHEMA:
+name (Type: String)
+Constraints:
+Required: Yes
+Description: This field stores the name of the user. It is required, meaning it must have a value.
+email (Type: String)
+Constraints:
+Required: Yes
+Unique: Yes
+Description: This field stores the email address of the user. It is required, meaning it must have a value, and it must be unique, ensuring that each email address is associated with a unique user.
+password (Type: String)
+Constraints:
+Required: Yes
+Description: This field stores the user's password. It is required, meaning it must have a value. It likely stores a hashed or encrypted password for security.
+Additional Schema Options:
+timestamps: false: This option is set to false, which means that the schema will not include the automatic timestamp fields "createdAt" and "updatedAt." These fields are typically used to track when the document was created and when it was last updated. In this case, they are disabled.
+Model:
+A Mongoose model named "user" is created based on this schema. This model can be used to interact with the "user" collection in the MongoDB database, allowing for operations such as creating, reading, updating, and deleting user records.
+
+DATABASE SCHEMA: OTP (ONE-TIME PASSWORD) SCHEMA
+This database schema defines the structure of documents to be stored in a collection named "otp." It is designed for use with the Mongoose library, which facilitates interaction with a MongoDB database.
+FIELDS IN THE SCHEMA:
+email (Type: String)
+Constraints:
+Required: Yes
+Unique: Yes
+Description: This field is used to store the email address associated with the OTP. It is required, meaning it must have a value, and it must be unique to ensure that each email is associated with a unique OTP.
+otp (Type: Number)
+Constraints:
+Required: Yes
+Description: This field is used to store the numeric One-Time Password (OTP). It is required, meaning it must have a value.
+token (Type: String)
+Constraints:
+Required: Yes
+Description: This field is used to store a string token. It is required, meaning it must have a value.
+expires (Type: Date)
+Default Value: 10 minutes (600,000 milliseconds) from the current date and time
+Description: This field represents the expiration date and time for the OTP or token. It has a default value set to 10 minutes from the creation time. If an explicit expiration time is not provided, this default will be used.
+Additional Schema Options:
+timestamps: true: This option is enabled, which means that the schema will automatically include two timestamp fields in each document: "createdAt" and "updatedAt." These fields track when the document was created and when it was last updated.
+Model:
+A Mongoose model named "otp" is created based on this schema. This model can be used to interact with the "otp" collection in the MongoDB database, allowing for operations such as creating, reading, updating, and deleting OTP records.
