@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 
 import userRouter from "./routes/user.route.js";
 import logoutRouter from "./routes/logout.route.js";
+import memoryRouter from "./routes/memory.route.js";
 
 dotenv.config();
 
@@ -42,3 +43,4 @@ app.listen(port, () => {
 
 app.use("/user", userRouter);
 app.use("/logout", logoutRouter);
+app.use("/memory", memoryRouter);

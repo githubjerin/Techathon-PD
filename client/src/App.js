@@ -11,7 +11,7 @@ import Signup from './pages/signup.page.jsx';
 import ForgotPassword from './pages/forgotPass.page.jsx';
 import ResetPassword from './pages/resetPass.page.jsx';
 import WelcomePage from "./pages/welcomeUser.page.jsx";
-import addMemory from "./pages/addmem.page.jsx";
+import AddMemoryPage from "./pages/addmem.page.jsx";
 
 function App() {
   return (
