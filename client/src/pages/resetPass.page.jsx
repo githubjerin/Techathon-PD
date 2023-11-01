@@ -59,7 +59,7 @@ export default function ResetPassword() {
                          <div className="text-center bg-primary position-relative">
                              <div className="position-relative pt-4 py-5 mb-1">
                                  <h5 className="text-white">Reset your Password</h5>
-                             <p className="text-white-50 mb-0 fs-14">The password should contain atleast 6 characters</p>
+                             <p className="text-white-50 mb-0 fs-14" style={{paddingBottom: "20px"}}>The password should contain atleast 6 characters</p>
                              </div>
                          </div>
                          <div className="card-body position-relative">

@@ -46,7 +46,7 @@ export default function ForgotPassword() {
                          <div className="text-center bg-primary position-relative">
                              <div className="position-relative pt-4 py-5 mb-1">
                                  <h5 className="text-white">Forgot your password ?</h5>
-                             <p className="text-white-50 mb-0 fs-14" style={{ textAlign: "left", paddingLeft: "15px" }}>Tell us your email address, and we will get you back on track in no time.</p>
+                             <p className="text-white-50 mb-0 fs-14" style={{ textAlign: "left", paddingLeft: "15px", paddingBottom: "20px"}}>Tell us your email address, and we will get you back on track in no time.</p>
                              </div>
                          </div>
                          <div className="card-body position-relative">

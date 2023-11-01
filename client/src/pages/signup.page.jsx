@@ -56,7 +56,7 @@ export default function Signup() {
                          <div className="text-center bg-primary position-relative">
                              <div className="position-relative pt-4 py-5 mb-1">
                                  <h5 className="text-white">Welcome!</h5>
-                             <p className="text-white-50 mb-0 fs-14">Sign up For a New Account.</p>
+                             <p className="text-white-50 mb-0 fs-14" style={{paddingBottom: "20px"}}>Sign up For a New Account.</p>
                              </div>
                          </div>
                          <div className="card-body position-relative">
