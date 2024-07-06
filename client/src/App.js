@@ -7,12 +7,11 @@ import {
 import React from 'react';
 
 import Landing from './pages/landing.page.jsx';
-import Signup from './pages/signup.page.jsx';
-import ForgotPassword from './pages/forgotPass.page.jsx';
-import ResetPassword from './pages/resetPass.page.jsx';
-import WelcomePage from "./pages/welcomeUser.page.jsx";
-import AddMemoryPage from "./pages/addmem.page.jsx";
+import Signup from './pages/authentication/signup.page.jsx';
+import ForgotPassword from './pages/authentication/forgotPassword.page.jsx';
+import ResetPassword from './pages/authentication/resetPassword.page.jsx';
 import Memories from "./pages/memories.page.jsx";
+import AddMemory from "./pages/addMemory.page.jsx";
 
 function App() {
   return (
@@ -22,10 +21,9 @@ function App() {
           <Route path="/signup" element={ <Signup navigate={useNavigate}/> }/>
           <Route path="/forgot-password" element={ <ForgotPassword navigate={useNavigate}/> }/>
           <Route path="/reset-password" element={ <ResetPassword navigate={useNavigate}/> }/>
-          <Route path="/welcomepage" element={ <WelcomePage navigate={useNavigate}/> }/>
-          <Route path="/addMemory" element={ <AddMemoryPage navigate={useNavigate}/> }/>
-          <Route path="/addMemory" element={ <AddMemoryPage navigate={useNavigate}/> }/>
+          
           <Route path="/memories" element={ <Memories navigate={useNavigate}/> }/>
+          <Route path="/add-memory" element={ <AddMemory navigate={useNavigate}/> }/>
         </Routes>
     </Router>
   );

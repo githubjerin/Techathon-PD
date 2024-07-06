@@ -1,122 +1,111 @@
-import React from "react";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import NavBar from '../components/navbar.component.jsx';
+import BottomNavBar from '../components/navbar_bottom.component.jsx';
+import axios from 'axios';
 
-import '../res/css/bootstrap.min.css';
-import '../res/css/materialdesignicons.min.css';
-import '../res/css/style.min.css';
-
-import Memory from "../components/memory.component.jsx";
+import image from '../res/images/bg.jpg';
+import MemoryCard from '../components/memoryCard.component.jsx';
 
 
-
-
-export default function Landing() {
-    const [entries, setEntries] = React.useState([]);
-    async function getEntries() {
-        const response = await fetch('http://localhost:2003/memory/view-memory', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        });
-        if (response.status === 200) {
-            const data = await response.json();
-            setEntries(data);
-        } else {
-            alert('Invalid email or password');
+const theme = createTheme({
+    palette: {
+        mode: 'dark',
+        primary:{
+            main: "rgba(255, 255, 255, 0.7)"
+        },
+        secondary: {
+            main: "#E9C46A"
         }
-    }
-
-    async function entriesList() {
-        
-        return entries.forEach(currententry => {       
-            return <Memory 
-                        key={currententry._id}
-                        title={currententry.title}
-                        data={currententry.data} 
-                        location={currententry.location}
-                    />;
-        });
-    }
-
-    React.useEffect(() => {
-        getEntries();
-    }, []);
-
-    return (
-        <div id="homepage">
-
-    <div id="wrapper">
-
-        <header>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="logo">
-                            <a href="index.html">
-                                <img class="logo" src="images/logo-light.png" alt=""/>
-                            </a>
-                        </div>
-
-                        <span id="menu-btn"></span>
-                        <nav>
-                            <ul id="mainmenu">
-                                <li><a href="/addMemory">Add Memory</a></li>
-                                <li><a href="/logout">Logout<span></span></a></li>
-                            </ul>
-                        </nav>
-
-                    </div>
-
-                </div>
-            </div>
-        </header>
+    },
+  });
 
 
-        <div id="content" class="no-top no-bottom" data-bgimage="url(images/background/2.jpg)" data-stellar-background-ratio=".2">
-            <div class="overlay-bg t50 no-bottom">
-                <section id="subheader" class="dark no-top no-bottom">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h1>Memories</h1>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+export default function Memories(props) {
+  const [name, setName] = React.useState('');
+  const [memories, setMemories] = React.useState([]);
 
-                <section aria-label="section-services">
-                    <div class="container">
-                        <Memory title="Memory #1" data="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." location="Chennai"></Memory>
-                        <Memory title="Memory #2" data="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." location="Chennai"></Memory>
+  const loadData = async () => {
+    await axios.get('http://localhost:2003/user/get-details', {withCredentials: true}).then((response) => {
+      setName(response.data.name);
+    });
+    await axios.get('http://localhost:2003/memory/view-memory', {withCredentials: true})
+    // .then((response) => response.json())
+    .then((response) => {
+      setMemories(response.data);
+    });
+  }
 
-                        <div class="spacer-double"></div>
-
-                        <div class="text-center">
-                            <ul class="pagination">
-                                <li><a href="#">Prev</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </section>
-
-            </div>
-        </div>
-
-
-    </div>
-
-
-
-</div>
-    );
+  React.useState(() => {
+    loadData();
+  }, []);
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <NavBar></NavBar>
+      <main>
+        {/* Hero unit */}
+        <Box
+          component="div"
+          sx={{
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
+            backgroundImage: `url(${image})` ,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            zIndex: -1000
+          }}
+        />
+          <Container maxWidth="sm" sx={{pt: 12, pd: 8}}>
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="text.primary"
+              gutterBottom
+            >
+              Welcome ! <br></br>{name}
+            </Typography>
+            <Typography variant="h5" align="center" color="text.secondary" paragraph>
+            I am a passionate photographer who captures the beauty of life through the lens, turning moments into timeless art. My work is a visual storytelling that speaks volumes without words.
+            </Typography>
+            <Stack
+              sx={{ pt: 4 }}
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+            >
+              <Button variant="contained" onClick={() => {window.location = '/add-memory'}}>+ Add Memory</Button>
+              <Button variant="outlined">Recent Memory</Button>
+            </Stack>
+          </Container>
+        <Container sx={{ py: 8 }} maxWidth="xl">
+          {/* End hero unit */}
+          <Grid container spacing={4}>
+            {memories.map((memory) => (
+              <Grid item key={memory._id} xs={12} sm={6} md={4}>
+                <MemoryCard
+                  _id={memory._id}
+                  description={memory.description}
+                  title={memory.title}
+                  memory_image={memory.memory_image}
+                  isEditing={false}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+            {/* </Box> */}
+      </main>
+      <BottomNavBar></BottomNavBar>
+    </ThemeProvider>
+  );
 }
-

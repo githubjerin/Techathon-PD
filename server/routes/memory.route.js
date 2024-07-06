@@ -23,15 +23,15 @@ router.get('/view-memory', isLoggedIn, async (req, res) => {
 /*  END OF SECTION - I  */
 
 /*  SECTION - II     */
-router.post('/add-memory', [isLoggedIn, upload.single("memory_image")], async (req, res) => {
+router.post('/add-memory', isLoggedIn, async (req, res) => {
     try{
         if (req.file !== undefined) {
             req.body.memory_image = req.file.filename;
         }
-        console.log(req.user.email);
+        // console.log(req.user.email);
         const newMemory = await memory.create({
             email: req.user.email,
-            data: req.body.data,
+            description: req.body.description,
             memory_image: req.body.memory_image,
             location: req.body.location,
             title: req.body.title
@@ -45,8 +45,18 @@ router.post('/add-memory', [isLoggedIn, upload.single("memory_image")], async (r
 });
 
 router.post('/delete-memory', async (req, res) => {
-    
-    
+    await memory.deleteOne({ _id: req.body.id }).then(() => {
+        res.status(200).json("Memory deleted");
+    });
+});
+
+router.post('/update-memory', async (req, res) => {
+    await memory.findOneAndUpdate({ _id: req.body._id }, {
+        title: req.body.title,
+        description: req.body.description
+    }).then(() => {
+        res.status(200).json("Memory deleted");
+    });
 });
 
 export default router;

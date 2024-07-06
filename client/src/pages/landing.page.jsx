@@ -66,7 +66,7 @@ export default function Landing() {
                         <div className="card overflow-hidden mt-2">
                             <div className="text-center bg-primary position-relative">
                                 <div className="position-relative pt-4 py-5 mb-1">
-                                    <h5 className="text-white">Welcome!</h5>
+                                    <h5 className="text-white">Welcome to Memory Vault!</h5>
                                 <p className="text-white-50 mb-0 fs-14" style={{paddingBottom: "20px"}}>Sign in to Continue...</p>
                                 </div>
                             </div>
@@ -90,15 +90,15 @@ export default function Landing() {
                                             </div>
                                         </div>
                                         <div className="mt-4">
-                                            <button className="btn btn-primary w-100" type="submit">Log in</button>
+                                            <button className="btn btn-secondary w-100" type="submit">Log in</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>   
                         </div>
                         <div className="mt-5 text-center text-white-50" style={{display: "flex", justifyContent: "center"}}> 
-                            <p>Don't have an account ? </p> &nbsp;&nbsp;
-                            <p className="fw-bold text-black button" onClick={ signup }> Register</p>
+                            <p style={{ color: 'white' }}>Don't have an account ? </p> &nbsp;&nbsp;
+                            <p className="fw-bold button" onClick={ signup } style={{ color: "white" }}> Register</p>
                         </div>
                         </div>
                     </div>
